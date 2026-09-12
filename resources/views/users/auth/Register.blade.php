@@ -133,9 +133,15 @@
     <!-- Footer / Already have account -->
     <p class="mt-6 text-center text-sm font-medium text-gray-500">
         Already have account? 
-        <a href="{{ route('login') }}" class="text-red-600 font-semibold hover:underline">
-            Sign in
-        </a>
+            @if (Route::has('login'))
+                <a href="{{ route('login') }}" class="text-red-600 font-semibold hover:underline">
+                    Sign in
+                </a>
+            @else
+                <a href="{{ url('/login') }}" class="text-red-600 font-semibold hover:underline">
+                    Sign in
+                </a>
+            @endif
     </p>
 
     <!-- JavaScript to toggle Password Visibility -->

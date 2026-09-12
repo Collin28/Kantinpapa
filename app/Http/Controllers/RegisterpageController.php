@@ -6,7 +6,7 @@ class RegisterpageController extends Controller
 {
     public function index()
     {
-       return view('users.Registerpage.Register');
+         return view('users.auth.Register');
     }
 }
 
