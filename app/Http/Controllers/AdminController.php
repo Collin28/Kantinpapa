@@ -13,4 +13,12 @@ class AdminController extends Controller
     public function orderManagement() {
         return view('admin.orderManagement');
     }
+
+    public function menuManagement() {
+        return view('admin.menuManagement');
+    }
+
+    public function userManagement() {
+        return view('admin.userManagement');
+    }
 }
