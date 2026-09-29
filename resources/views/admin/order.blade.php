@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KantinPapa - Order Management</title>
+    <title>KantinPapa - Order </title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
@@ -36,7 +36,7 @@
                     </svg>
                     Dashboard
                 </a>
-                <a href="{{ route('admin.ordermanagement') }}"
+                <a href="{{ route('admin.order') }}"
                     class="flex items-center gap-3 bg-red-600 text-white font-semibold text-base px-4 py-3.5 rounded-lg">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">
@@ -45,7 +45,7 @@
                     </svg>
                     Orders
                 </a>
-                <a href="{{ route('admin.menumanagement') }}"
+                <a href="{{ route('admin.menu') }}"
                     class="flex items-center gap-3 text-neutral-400 hover:text-neutral-200 font-semibold text-base px-4 py-3.5 rounded-lg transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">
@@ -54,7 +54,7 @@
                     </svg>
                     Menu
                 </a>
-                <a href="{{ route('admin.usermanagement') }}"
+                <a href="{{ route('admin.user') }}"
                     class="flex items-center gap-3 text-neutral-400 hover:text-neutral-200 font-semibold text-base px-4 py-3.5 rounded-lg transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">
@@ -80,7 +80,7 @@
 
 
         <main class="flex-1 px-10 py-10">
-            <h1 class="font-bold text-neutral-950 text-4xl mb-1">Order Management</h1>
+            <h1 class="font-bold text-neutral-950 text-4xl mb-1">Order </h1>
             <p class="text-neutral-500 text-lg mb-6">Monitor and update order statuses in real time.</p>
 
 

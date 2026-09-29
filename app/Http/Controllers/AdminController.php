@@ -10,15 +10,15 @@ class AdminController extends Controller
         return view('admin.dashboard');
     }
 
-    public function orderManagement() {
-        return view('admin.orderManagement');
+    public function order() {
+        return view('admin.order');
     }
 
-    public function menuManagement() {
-        return view('admin.menuManagement');
+    public function menu() {
+        return view('admin.menu');
     }
 
-    public function userManagement() {
-        return view('admin.userManagement');
+    public function user() {
+        return view('admin.user');
     }
 }

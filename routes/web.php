@@ -26,8 +26,8 @@ Route::prefix('user')->name('user.')->group(function () {
 //Admin
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('dashboard');
-    Route::get('/ordermanage', [AdminController::class, 'orderManagement'])->name('ordermanagement');
-    Route::get('/menumanage', [AdminController::class, 'menuManagement'])->name('menumanagement');
-    Route::get('/usermanage', [AdminController::class, 'userManagement'])->name('usermanagement');
+    Route::get('/ordermanage', [AdminController::class, 'order'])->name('order');
+    Route::get('/menumanage', [AdminController::class, 'menu'])->name('menu');
+    Route::get('/usermanage', [AdminController::class, 'user'])->name('user');
 });
 
