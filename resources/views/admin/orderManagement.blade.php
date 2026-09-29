@@ -27,7 +27,7 @@
 
 
             <nav class="flex flex-col gap-2 px-4 py-5">
-                <a href="#"
+                <a href="{{ route('admin.dashboard') }}"
                     class="flex items-center gap-3 text-neutral-400 hover:text-neutral-200 font-semibold text-base px-4 py-3.5 rounded-lg transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">
@@ -36,7 +36,7 @@
                     </svg>
                     Dashboard
                 </a>
-                <a href="#"
+                <a href="{{ route('admin.ordermanagement') }}"
                     class="flex items-center gap-3 bg-red-600 text-white font-semibold text-base px-4 py-3.5 rounded-lg">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">
@@ -45,7 +45,7 @@
                     </svg>
                     Orders
                 </a>
-                <a href="#"
+                <a href="{{ route('admin.menumanagement') }}"
                     class="flex items-center gap-3 text-neutral-400 hover:text-neutral-200 font-semibold text-base px-4 py-3.5 rounded-lg transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">
@@ -54,7 +54,7 @@
                     </svg>
                     Menu
                 </a>
-                <a href="#"
+                <a href="{{ route('admin.usermanagement') }}"
                     class="flex items-center gap-3 text-neutral-400 hover:text-neutral-200 font-semibold text-base px-4 py-3.5 rounded-lg transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">

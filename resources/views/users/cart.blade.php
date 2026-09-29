@@ -87,7 +87,7 @@
                         <span>Rp41.800</span>
                     </div>
                     <div class="flex justify-between text-sm text-neutral-600 mb-4">
-                        <span>Pajak (10%)</span>
+                        <span>Tax (10%)</span>
                         <span>Rp5.800</span>
                     </div>
 
@@ -98,7 +98,7 @@
 
                     <button
                         class="w-full bg-red-600 hover:bg-red-600/90 transition-colors text-white text-sm font-medium py-2.5 rounded-md">
-                        Lanjut Pembayaran
+                        Continue Payment
                     </button>
                 </div>
 
