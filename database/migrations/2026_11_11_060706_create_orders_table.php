@@ -9,18 +9,18 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-   public function up(): void
+    public function up(): void
 {
     Schema::create('orders', function (Blueprint $table) {
         $table->id();
-        $table->foreignId('user_id')->constrained()->onDelete('cascade');
-        $table->string('order_code')->unique();
+        $table->unsignedBigInteger('user_id');
+        $table->string('order_code');
         $table->decimal('total_price', 12, 2);
-        $table->enum('status', ['pending', 'paid', 'processing', 'completed', 'cancelled'])->default('pending');
-        $table->string('payment_proof')->nullable(); // Foto bukti transfer jika ada
+        $table->string('status')->default('pending');
         $table->timestamps();
     });
 }
+
     /**
      * Reverse the migrations.
      */
