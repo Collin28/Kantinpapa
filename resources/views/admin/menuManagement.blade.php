@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 
 <head>
@@ -67,7 +67,7 @@
             </nav>
 
             <div class="mt-auto flex flex-col gap-1 px-4 py-5 border-t border-neutral-800">
-                <a href="#"
+                                <a href="#"
                     class="flex items-center gap-3 text-neutral-300 hover:text-white font-semibold text-base px-4 py-3 rounded-lg transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">
@@ -316,3 +316,4 @@
 </body>
 
 </html>
+

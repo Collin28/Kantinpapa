@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 
 <head>
@@ -67,7 +67,7 @@
             </nav>
 
             <div class="mt-auto flex flex-col gap-1 px-4 py-5 border-t border-neutral-800">
-                <a href="#"
+                                <a href="#"
                     class="flex items-center gap-3 text-neutral-300 hover:text-white font-semibold text-base px-4 py-3 rounded-lg transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">
@@ -88,7 +88,7 @@
 
 
                 <div class="border border-teal-100 rounded-xl px-6 py-6">
-                    <div class="w-11 h-11 rounded-lg bg-neutral-100 flex items-center justify-center text-xl mb-4">💰
+                    <div class="w-11 h-11 rounded-lg bg-neutral-100 flex items-center justify-center text-xl mb-4">ðŸ’°
                     </div>
                     <div class="font-bold text-neutral-950 text-2xl mb-1">Rp 12.480.000</div>
                     <div class="text-neutral-700 font-medium text-sm">Total Revenue</div>
@@ -96,7 +96,7 @@
                 </div>
 
                 <div class="border border-teal-100 rounded-xl px-6 py-6">
-                    <div class="w-11 h-11 rounded-lg bg-neutral-100 flex items-center justify-center text-xl mb-4">📈
+                    <div class="w-11 h-11 rounded-lg bg-neutral-100 flex items-center justify-center text-xl mb-4">ðŸ“ˆ
                     </div>
                     <div class="font-bold text-neutral-950 text-2xl mb-1">Rp 845.000</div>
                     <div class="text-neutral-700 font-medium text-sm">Today's Revenue</div>
@@ -105,7 +105,7 @@
 
 
                 <div class="border border-teal-100 rounded-xl px-6 py-6">
-                    <div class="w-11 h-11 rounded-lg bg-neutral-100 flex items-center justify-center text-xl mb-4">🧾
+                    <div class="w-11 h-11 rounded-lg bg-neutral-100 flex items-center justify-center text-xl mb-4">ðŸ§¾
                     </div>
                     <div class="font-bold text-neutral-950 text-2xl mb-1">1,284</div>
                     <div class="text-neutral-700 font-medium text-sm">Total Orders</div>
@@ -113,7 +113,7 @@
                 </div>
 
                 <div class="border border-teal-100 rounded-xl px-6 py-6">
-                    <div class="w-11 h-11 rounded-lg bg-neutral-100 flex items-center justify-center text-xl mb-4">⏳
+                    <div class="w-11 h-11 rounded-lg bg-neutral-100 flex items-center justify-center text-xl mb-4">â³
                     </div>
                     <div class="font-bold text-neutral-950 text-2xl mb-1">8</div>
                     <div class="text-neutral-700 font-medium text-sm">Pending Orders</div>
@@ -121,7 +121,7 @@
                 </div>
 
                 <div class="border border-teal-100 rounded-xl px-6 py-6">
-                    <div class="w-11 h-11 rounded-lg bg-neutral-100 flex items-center justify-center text-xl mb-4">✅
+                    <div class="w-11 h-11 rounded-lg bg-neutral-100 flex items-center justify-center text-xl mb-4">âœ…
                     </div>
                     <div class="font-bold text-neutral-950 text-2xl mb-1">1,241</div>
                     <div class="text-neutral-700 font-medium text-sm">Completed</div>
@@ -129,7 +129,7 @@
                 </div>
 
                 <div class="border border-teal-100 rounded-xl px-6 py-6">
-                    <div class="w-11 h-11 rounded-lg bg-neutral-100 flex items-center justify-center text-xl mb-4">🍽️
+                    <div class="w-11 h-11 rounded-lg bg-neutral-100 flex items-center justify-center text-xl mb-4">ðŸ½ï¸
                     </div>
                     <div class="font-bold text-neutral-950 text-2xl mb-1">12</div>
                     <div class="text-neutral-700 font-medium text-sm">Menu Items</div>
@@ -144,3 +144,4 @@
 </body>
 
 </html>
+

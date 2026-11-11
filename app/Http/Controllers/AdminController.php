@@ -6,19 +6,23 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         return view('admin.dashboard');
     }
 
-    public function orderManagement() {
+    public function orderManagement()
+    {
         return view('admin.orderManagement');
     }
 
-    public function menuManagement() {
+    public function menuManagement()
+    {
         return view('admin.menuManagement');
     }
 
-    public function userManagement() {
+    public function userManagement()
+    {
         return view('admin.userManagement');
     }
 }

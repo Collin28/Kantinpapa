@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
 
 <head>
@@ -66,7 +66,7 @@
             </nav>
 
             <div class="mt-auto flex flex-col gap-1 px-4 py-5 border-t border-neutral-800">
-                <a href="#"
+                                <a href="#"
                     class="flex items-center gap-3 text-neutral-300 hover:text-white font-semibold text-base px-4 py-3 rounded-lg transition-colors">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2">
@@ -130,7 +130,7 @@
                         <tr class="border-b border-neutral-100">
                             <td class="px-6 py-4 font-semibold text-neutral-800 whitespace-nowrap">KTG-891248</td>
                             <td class="px-4 py-4 font-semibold text-neutral-900 whitespace-nowrap">Fajar Nugroho</td>
-                            <td class="px-4 py-4 text-neutral-500">Nasi Goreng Kampung ×2</td>
+                            <td class="px-4 py-4 text-neutral-500">Nasi Goreng Kampung Ã—2</td>
                             <td class="px-4 py-4 text-neutral-700">2</td>
                             <td class="px-4 py-4 font-semibold text-neutral-900 whitespace-nowrap">Rp 33.000</td>
                             <td class="px-4 py-4"><span
@@ -143,7 +143,7 @@
                             <td class="px-6 py-4">
                                 <div class="flex items-center gap-2">
                                     <button
-                                        class="bg-neutral-950 text-white text-xs font-semibold px-3 py-2 rounded-lg whitespace-nowrap">→
+                                        class="bg-neutral-950 text-white text-xs font-semibold px-3 py-2 rounded-lg whitespace-nowrap">â†’
                                         Paid</button>
                                     <button
                                         class="bg-red-50 text-red-500 text-xs font-semibold px-3 py-2 rounded-lg whitespace-nowrap">Cancel</button>
@@ -154,7 +154,7 @@
                         <tr class="border-b border-neutral-100">
                             <td class="px-6 py-4 font-semibold text-neutral-800 whitespace-nowrap">KTG-891249</td>
                             <td class="px-4 py-4 font-semibold text-neutral-900 whitespace-nowrap">Budi Santoso</td>
-                            <td class="px-4 py-4 text-neutral-500">Nasi Ayam Bakar ×4</td>
+                            <td class="px-4 py-4 text-neutral-500">Nasi Ayam Bakar Ã—4</td>
                             <td class="px-4 py-4 text-neutral-700">4</td>
                             <td class="px-4 py-4 font-semibold text-neutral-900 whitespace-nowrap">Rp 50.600</td>
                             <td class="px-4 py-4"><span
@@ -167,7 +167,7 @@
                             <td class="px-6 py-4">
                                 <div class="flex items-center gap-2">
                                     <button
-                                        class="bg-neutral-950 text-white text-xs font-semibold px-3 py-2 rounded-lg whitespace-nowrap">→
+                                        class="bg-neutral-950 text-white text-xs font-semibold px-3 py-2 rounded-lg whitespace-nowrap">â†’
                                         Ready</button>
                                     <button
                                         class="bg-red-50 text-red-500 text-xs font-semibold px-3 py-2 rounded-lg whitespace-nowrap">Cancel</button>
@@ -178,7 +178,7 @@
                         <tr class="border-b border-neutral-100">
                             <td class="px-6 py-4 font-semibold text-neutral-800 whitespace-nowrap">KTG-891250</td>
                             <td class="px-4 py-4 font-semibold text-neutral-900 whitespace-nowrap">Siti Rahayu</td>
-                            <td class="px-4 py-4 text-neutral-500">Mie Goreng Spesial ×1</td>
+                            <td class="px-4 py-4 text-neutral-500">Mie Goreng Spesial Ã—1</td>
                             <td class="px-4 py-4 text-neutral-700">1</td>
                             <td class="px-4 py-4 font-semibold text-neutral-900 whitespace-nowrap">Rp 17.600</td>
                             <td class="px-4 py-4"><span
@@ -191,7 +191,7 @@
                             <td class="px-6 py-4">
                                 <div class="flex items-center gap-2">
                                     <button
-                                        class="bg-neutral-950 text-white text-xs font-semibold px-3 py-2 rounded-lg whitespace-nowrap leading-tight">→<br>Completed</button>
+                                        class="bg-neutral-950 text-white text-xs font-semibold px-3 py-2 rounded-lg whitespace-nowrap leading-tight">â†’<br>Completed</button>
                                     <button
                                         class="bg-red-50 text-red-500 text-xs font-semibold px-3 py-2 rounded-lg whitespace-nowrap">Cancel</button>
                                 </div>
@@ -202,7 +202,7 @@
                         <tr class="border-b border-neutral-100">
                             <td class="px-6 py-4 font-semibold text-neutral-800 whitespace-nowrap">KTG-891251</td>
                             <td class="px-4 py-4 font-semibold text-neutral-900 whitespace-nowrap">Ahmad Rizki</td>
-                            <td class="px-4 py-4 text-neutral-500">Bakso Sapi ×2, Jus ×1</td>
+                            <td class="px-4 py-4 text-neutral-500">Bakso Sapi Ã—2, Jus Ã—1</td>
                             <td class="px-4 py-4 text-neutral-700">3</td>
                             <td class="px-4 py-4 font-semibold text-neutral-900 whitespace-nowrap">Rp 48.400</td>
                             <td class="px-4 py-4"><span
@@ -219,7 +219,7 @@
                         <tr class="border-b border-neutral-100">
                             <td class="px-6 py-4 font-semibold text-neutral-800 whitespace-nowrap">KTG-891252</td>
                             <td class="px-4 py-4 font-semibold text-neutral-900 whitespace-nowrap">Dewi Susanti</td>
-                            <td class="px-4 py-4 text-neutral-500">Pisang Goreng Keju ×3</td>
+                            <td class="px-4 py-4 text-neutral-500">Pisang Goreng Keju Ã—3</td>
                             <td class="px-4 py-4 text-neutral-700">3</td>
                             <td class="px-4 py-4 font-semibold text-neutral-900 whitespace-nowrap">Rp 26.400</td>
                             <td class="px-4 py-4"><span
@@ -235,7 +235,7 @@
                         <tr class="border-b border-neutral-100">
                             <td class="px-6 py-4 font-semibold text-neutral-800 whitespace-nowrap">KTG-891253</td>
                             <td class="px-4 py-4 font-semibold text-neutral-900 whitespace-nowrap">Reza Firmansyah</td>
-                            <td class="px-4 py-4 text-neutral-500">Gado-Gado ×1, Es Campur ×2</td>
+                            <td class="px-4 py-4 text-neutral-500">Gado-Gado Ã—1, Es Campur Ã—2</td>
                             <td class="px-4 py-4 text-neutral-700">3</td>
                             <td class="px-4 py-4 font-semibold text-neutral-900 whitespace-nowrap">Rp 36.300</td>
                             <td class="px-4 py-4"><span
@@ -252,7 +252,7 @@
                         <tr>
                             <td class="px-6 py-4 font-semibold text-neutral-800 whitespace-nowrap">KTG-891254</td>
                             <td class="px-4 py-4 font-semibold text-neutral-900 whitespace-nowrap">Linda Wati</td>
-                            <td class="px-4 py-4 text-neutral-500">Martabak Telur ×2, Es Teh ×3</td>
+                            <td class="px-4 py-4 text-neutral-500">Martabak Telur Ã—2, Es Teh Ã—3</td>
                             <td class="px-4 py-4 text-neutral-700">5</td>
                             <td class="px-4 py-4 font-semibold text-neutral-900 whitespace-nowrap">Rp 49.500</td>
                             <td class="px-4 py-4"><span
@@ -275,3 +275,4 @@
 </body>
 
 </html>
+

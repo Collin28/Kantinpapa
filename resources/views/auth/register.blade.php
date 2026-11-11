@@ -37,8 +37,14 @@
             Join KantinPapa to start ordering food on campus.
         </p>
 
+        @if (session('info'))
+            <div class="mb-4 bg-blue-50 border border-blue-200 rounded-md px-4 py-3 text-sm text-blue-700">
+                {{ session('info') }}
+            </div>
+        @endif
+
         <!-- Form -->
-        <form action="{{ route('register') }}" method="POST" class="space-y-4">
+        <form action="{{ route('register.process') }}" method="POST" class="space-y-4">
             @csrf
 
             <!-- Full Name -->
@@ -110,15 +116,9 @@
     <!-- Footer / Already have account -->
     <p class="mt-6 text-center text-sm font-medium text-gray-500">
         Already have account?
-        @if (Route::has('login'))
-            <a href="{{ route('login') }}" class="text-red-600 font-semibold hover:underline">
-                Sign in
-            </a>
-        @else
-            <a href="{{ url('/login') }}" class="text-red-600 font-semibold hover:underline">
-                Sign in
-            </a>
-        @endif
+        <a href="{{ route('login') }}" class="text-red-600 font-semibold hover:underline">
+            Sign in
+        </a>
     </p>
 
     <!-- JavaScript to toggle Password Visibility -->
