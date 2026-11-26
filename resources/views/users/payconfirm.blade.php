@@ -13,8 +13,8 @@
 
             <h1 class="font-bold text-neutral-900 text-2xl mb-3">Order Placed!</h1>
             <p class="text-sm text-neutral-500 mb-1">Your order <span
-                    class="font-semibold text-neutral-700">KTG-355691</span></p>
-            <p class="text-sm text-neutral-400 mb-8">Payment confirmed! Please pickup your order.</p>
+                    class="font-semibold text-neutral-700">{{ $order->order_number }}</span></p>
+            <p class="text-sm text-neutral-400 mb-8">Total: {{ $order->formattedTotal() }}. Please wait for confirmation and pickup at the counter.</p>
 
             <div class="flex items-center gap-3">
                 <a href="{{ route('orders.index') }}"

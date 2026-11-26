@@ -3,8 +3,10 @@
 use App\Http\Controllers\Admin\MenuController as AdminMenuController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Customer\CartController;
+use App\Http\Controllers\Customer\CheckoutController;
 use App\Http\Controllers\Customer\MenuController as CustomerMenuController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\Customer\OrderController;
 use Illuminate\Support\Facades\Route;
 
 // Public routes
@@ -28,12 +30,18 @@ Route::post('/logout', [AuthController::class, 'logout'])
 
 // Authenticated customer routes
 Route::middleware(['auth', 'active'])->group(function () {
-    Route::get('/cart', [UserController::class, 'cart'])->name('cart.index');
-    Route::get('/cart/empty', function () {
-        return view('users.cart-empty');
-    })->name('cart.empty');
-    Route::get('/orders', [UserController::class, 'orderHistory'])->name('orders.index');
-    Route::get('/order-confirmed', [UserController::class, 'payConfirm'])->name('orders.confirmed');
+    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/cart/{menu}', [CartController::class, 'store'])->name('cart.store');
+    Route::patch('/cart/{menu}', [CartController::class, 'update'])->name('cart.update');
+    Route::delete('/cart/{menu}', [CartController::class, 'destroy'])->name('cart.destroy');
+
+    Route::get('/checkout', [CheckoutController::class, 'review'])->name('checkout.review');
+    Route::get('/checkout/payment', [CheckoutController::class, 'payment'])->name('checkout.payment');
+    Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
+
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/{order}/confirmed', [OrderController::class, 'confirmed'])->name('orders.confirmed');
+    Route::post('/orders/{order}/reorder', [OrderController::class, 'reorder'])->name('orders.reorder');
 });
 
 // Admin routes

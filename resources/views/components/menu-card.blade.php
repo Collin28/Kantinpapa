@@ -39,10 +39,13 @@
             <div class="mt-4 flex items-center justify-between">
                 <span class="text-xs font-medium text-emerald-600">{{ $menu->stock }} left</span>
             </div>
-            <button type="button"
-                class="mt-2 w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2.5 rounded-xl transition text-sm">
-                + Add to Cart
-            </button>
+            <form action="{{ route('cart.store', $menu) }}" method="POST" class="mt-2">
+                @csrf
+                <button type="submit"
+                    class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2.5 rounded-xl transition text-sm">
+                    + Add to Cart
+                </button>
+            </form>
         </div>
     </div>
 @endif

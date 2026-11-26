@@ -7,83 +7,71 @@
                 <h1 class="font-bold text-neutral-950 text-3xl mb-1">Order History</h1>
                 <p class="text-neutral-500 text-sm">All your KantinPapa orders in one place</p>
             </div>
-            <button
+            <a href="{{ route('menu.index') }}"
                 class="bg-red-600 hover:bg-red-700 transition-colors text-white text-sm font-medium px-5 py-2.5 rounded-md whitespace-nowrap">
-                Order Again
-            </button>
+                Browse Menu
+            </a>
         </div>
 
-        <div class="flex flex-col gap-4">
-
-            <!-- Order Card 1 -->
-            <div class="border border-neutral-200 rounded-md px-6 py-6">
-                <div class="flex items-start justify-between">
-                    <div>
-                        <h2 class="font-semibold text-neutral-950 text-sm">KTG-891245</h2>
-                        <p class="text-xs text-neutral-400 mt-1">20 Aug 2026, 11:32</p>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <span
-                            class="bg-blue-50 border border-blue-200 text-blue-600 text-xs font-medium px-3 py-1 rounded-full">Paid</span>
-                        <span
-                            class="bg-emerald-50 border border-emerald-200 text-emerald-600 text-xs font-medium px-3 py-1 rounded-full">Completed</span>
-                    </div>
-                </div>
-
-                <div class="mt-5 flex flex-col gap-2">
-                    <div class="flex items-center justify-between text-sm">
-                        <span class="text-neutral-800">Nasi Ayam Bakar <span class="text-neutral-400">x2</span></span>
-                        <span class="text-neutral-500">Rp 36.000</span>
-                    </div>
-                    <div class="flex items-center justify-between text-sm">
-                        <span class="text-neutral-800">Es Teh Manis <span class="text-neutral-400">x2</span></span>
-                        <span class="text-neutral-500">Rp 10.000</span>
-                    </div>
-                </div>
-
-                <hr class="border-neutral-200 my-5">
-
-                <div class="flex items-center justify-between">
-                    <span class="text-xs text-neutral-400">Total (incl.tax)</span>
-                    <span class="font-semibold text-neutral-950 text-sm">Rp 50.600</span>
-                </div>
+        @if (session('error'))
+            <div class="mb-6 bg-red-50 border border-red-200 text-red-700 text-sm px-4 py-3 rounded-lg">
+                {{ session('error') }}
             </div>
+        @endif
 
-            <!-- Order Card 2 -->
-            <div class="border border-neutral-200 rounded-md px-6 py-6">
-                <div class="flex items-start justify-between">
-                    <div>
-                        <h2 class="font-semibold text-neutral-950 text-sm">KTG-887831</h2>
-                        <p class="text-xs text-neutral-400 mt-1">19 Aug 2026, 12:03</p>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <span
-                            class="bg-blue-50 border border-blue-200 text-blue-600 text-xs font-medium px-3 py-1 rounded-full">Paid</span>
-                        <span
-                            class="bg-emerald-50 border border-emerald-200 text-emerald-600 text-xs font-medium px-3 py-1 rounded-full">Completed</span>
-                    </div>
-                </div>
-
-                <div class="mt-5 flex flex-col gap-2">
-                    <div class="flex items-center justify-between text-sm">
-                        <span class="text-neutral-800">Mie Goreng Spesial <span
-                                class="text-neutral-400">x1</span></span>
-                        <span class="text-neutral-500">Rp 16.000</span>
-                    </div>
-                    <div class="flex items-center justify-between text-sm">
-                        <span class="text-neutral-800">Jus Alpukat <span class="text-neutral-400">x1</span></span>
-                        <span class="text-neutral-500">Rp 12.000</span>
-                    </div>
-                </div>
-
-                <hr class="border-neutral-200 my-5">
-
-                <div class="flex items-center justify-between">
-                    <span class="text-xs text-neutral-400">Total (incl.tax)</span>
-                    <span class="font-semibold text-neutral-950 text-sm">Rp 30.800</span>
-                </div>
+        @if ($orders->isEmpty())
+            <div class="border border-neutral-200 rounded-md px-6 py-12 text-center">
+                <p class="text-neutral-600 font-medium mb-3">You haven't placed any orders yet.</p>
+                <a href="{{ route('menu.index') }}" class="text-sm font-semibold text-red-600 hover:underline">
+                    Start ordering now
+                </a>
             </div>
+        @else
+            <div class="flex flex-col gap-4">
+                @foreach ($orders as $order)
+                    <div class="border border-neutral-200 rounded-md px-6 py-6">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <h2 class="font-semibold text-neutral-950 text-sm">{{ $order->order_number }}</h2>
+                                <p class="text-xs text-neutral-400 mt-1">{{ $order->created_at->format('d M Y, H:i') }}</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="{{ $order->payment_status->badgeClasses() }} text-xs font-medium px-3 py-1 rounded-full">
+                                    {{ $order->payment_status->label() }}
+                                </span>
+                                <span class="{{ $order->order_status->badgeClasses() }} text-xs font-medium px-3 py-1 rounded-full">
+                                    {{ $order->order_status->label() }}
+                                </span>
+                            </div>
+                        </div>
 
-        </div>
+                        <div class="mt-5 flex flex-col gap-2">
+                            @foreach ($order->items as $item)
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-neutral-800">{{ $item->menu_name }} <span class="text-neutral-400">x{{ $item->qty }}</span></span>
+                                    <span class="text-neutral-500">{{ $item->formattedLineTotal() }}</span>
+                                </div>
+                            @endforeach
+                        </div>
+
+                        <hr class="border-neutral-200 my-5">
+
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <span class="text-xs text-neutral-400">Total (incl.tax):</span>
+                                <span class="font-semibold text-neutral-950 text-sm ml-2">{{ $order->formattedTotal() }}</span>
+                            </div>
+                            <form action="{{ route('orders.reorder', $order) }}" method="POST">
+                                @csrf
+                                <button type="submit"
+                                    class="bg-red-600 hover:bg-red-700 transition-colors text-white text-xs font-semibold px-4 py-2 rounded-md">
+                                    Order Again
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        @endif
     </main>
 @endsection
