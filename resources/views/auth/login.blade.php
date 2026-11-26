@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KantinPapa - Login</title>
-
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>
@@ -50,17 +49,21 @@
                     <p class="text-blue-600 text-xs">Any password works.</p>
                 </div>
 
-                <form class="flex flex-col gap-4">
+                <form action="{{ route('login') }}" method="POST" class="flex flex-col gap-4">
+                    @csrf
                     <div>
-                        <label class="block text-sm font-medium text-neutral-800 mb-1.5">Email</label>
-                        <input type="email" placeholder="you@campus.ac.id"
+                        <label for="email" class="block text-sm font-medium text-neutral-800 mb-1.5">Email</label>
+                        <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="you@campus.ac.id" required
                             class="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent">
+                        @error('email')
+                            <span class="text-red-500 text-xs mt-1 block">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     <div>
-                        <label class="block text-sm font-medium text-neutral-800 mb-1.5">Password</label>
+                        <label for="password" class="block text-sm font-medium text-neutral-800 mb-1.5">Password</label>
                         <div class="relative">
-                            <input type="password" placeholder="••••••••••"
+                            <input type="password" id="password" name="password" placeholder="••••••••••" required
                                 class="w-full border border-neutral-300 rounded-md px-3 py-2 pr-10 text-sm text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent">
                             <button type="button"
                                 class="absolute inset-y-0 right-0 flex items-center pr-3 text-neutral-400">
@@ -75,7 +78,7 @@
 
                     <div class="flex items-center justify-between">
                         <label class="flex items-center gap-2 text-sm text-neutral-600">
-                            <input type="checkbox" class="rounded border-neutral-300 text-red-600 focus:ring-red-500">
+                            <input type="checkbox" name="remember" class="rounded border-neutral-300 text-red-600 focus:ring-red-500">
                             Remember me
                         </label>
                         <a href="#" class="text-sm text-red-600 font-medium hover:text-red-700">Forgot password?</a>
@@ -87,7 +90,7 @@
                     </button>
 
                     <p class="text-center text-sm text-neutral-500">
-                        Don't have an account? <a href="#" class="text-red-600 font-medium hover:text-red-700">Create
+                        Don't have an account? <a href="{{ route('register') }}" class="text-red-600 font-medium hover:text-red-700">Create
                             one</a>
                     </p>
                 </form>

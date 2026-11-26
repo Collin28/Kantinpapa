@@ -2,23 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class UserController extends Controller
 {
-    public function index(){
-       return view ('users.home');
+    public function index()
+    {
+        return view('users.home');
     }
 
-    public function orderHistory() {
-        return view('users.orderHistory');
+    public function orderHistory()
+    {
+        return view('users.order-history');
     }
 
-    public function cart() {
+    public function cart()
+    {
         return view('users.cart');
     }
 
-    public function payConfirm() {
-        return view('users.payConfirm');
+    public function payConfirm()
+    {
+        return view('users.payconfirm');
     }
 }
