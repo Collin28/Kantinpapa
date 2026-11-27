@@ -3,7 +3,7 @@
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\MenuController as AdminMenuController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Customer\CartController;
 use App\Http\Controllers\Customer\CheckoutController;
@@ -58,5 +58,10 @@ Route::prefix('admin')
         Route::resource('menus', AdminMenuController::class)->except(['show']);
         Route::patch('/menus/{menu}/toggle', [AdminMenuController::class, 'toggle'])->name('menus.toggle');
 
-        Route::get('/users', [AdminController::class, 'userManagement'])->name('users.index');
+        Route::get('/users', [AdminUserController::class, 'index'])->name('users.index');
+        Route::get('/users/{user}/edit', [AdminUserController::class, 'edit'])->name('users.edit');
+        Route::put('/users/{user}', [AdminUserController::class, 'update'])->name('users.update');
+        Route::patch('/users/{user}/suspend', [AdminUserController::class, 'suspend'])->name('users.suspend');
+        Route::patch('/users/{user}/restore', [AdminUserController::class, 'restore'])->name('users.restore');
+        Route::delete('/users/{user}', [AdminUserController::class, 'destroy'])->name('users.destroy');
     });
