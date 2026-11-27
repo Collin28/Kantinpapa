@@ -16,6 +16,22 @@ enum OrderStatus: string
         return ucfirst($this->value);
     }
 
+    public function nextForwardStatus(): ?self
+    {
+        return match ($this) {
+            self::Pending => self::Paid,
+            self::Paid => self::Preparing,
+            self::Preparing => self::Ready,
+            self::Ready => self::Completed,
+            self::Completed, self::Cancelled => null,
+        };
+    }
+
+    public function canBeCancelled(): bool
+    {
+        return ! in_array($this, [self::Completed, self::Cancelled], true);
+    }
+
     public function badgeClasses(): string
     {
         return match ($this) {

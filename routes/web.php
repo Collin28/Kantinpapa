@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\MenuController as AdminMenuController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Customer\CartController;
@@ -50,7 +51,8 @@ Route::prefix('admin')
     ->middleware(['auth', 'active', 'admin'])
     ->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('dashboard');
-        Route::get('/orders', [AdminController::class, 'orderManagement'])->name('orders.index');
+        Route::get('/orders', [AdminOrderController::class, 'index'])->name('orders.index');
+        Route::patch('/orders/{order}/status', [AdminOrderController::class, 'updateStatus'])->name('orders.update-status');
 
         Route::resource('menus', AdminMenuController::class)->except(['show']);
         Route::patch('/menus/{menu}/toggle', [AdminMenuController::class, 'toggle'])->name('menus.toggle');
