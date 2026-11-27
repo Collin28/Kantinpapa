@@ -9,6 +9,8 @@ use App\Http\Controllers\Customer\CartController;
 use App\Http\Controllers\Customer\CheckoutController;
 use App\Http\Controllers\Customer\MenuController as CustomerMenuController;
 use App\Http\Controllers\Customer\OrderController;
+use App\Http\Controllers\Customer\PaymentController;
+use App\Http\Controllers\Webhook\QrisWebhookController;
 use Illuminate\Support\Facades\Route;
 
 // Public routes
@@ -43,8 +45,16 @@ Route::middleware(['auth', 'active'])->group(function () {
 
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/{order}/confirmed', [OrderController::class, 'confirmed'])->name('orders.confirmed');
+    Route::get('/orders/{order}/pay', [PaymentController::class, 'show'])->name('orders.pay');
+    Route::post('/orders/{order}/pay/simulate', [PaymentController::class, 'simulate'])->name('orders.pay.simulate');
+    Route::get('/orders/{order}/status', [PaymentController::class, 'status'])->name('orders.status');
     Route::post('/orders/{order}/reorder', [OrderController::class, 'reorder'])->name('orders.reorder');
 });
+
+// QRIS Webhook
+Route::post('/webhooks/qris', QrisWebhookController::class)
+    ->middleware('throttle:60,1')
+    ->name('webhooks.qris');
 
 // Admin routes
 Route::prefix('admin')

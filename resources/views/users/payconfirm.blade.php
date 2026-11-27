@@ -11,18 +11,38 @@
                 </svg>
             </div>
 
-            <h1 class="font-bold text-neutral-900 text-2xl mb-3">Order Placed!</h1>
+            <h1 class="font-bold text-neutral-900 text-2xl mb-3">
+                {{ $order->payment_status === \App\Enums\PaymentStatus::Paid ? 'Payment Confirmed!' : 'Order Placed!' }}
+            </h1>
             <p class="text-sm text-neutral-500 mb-1">Your order <span
                     class="font-semibold text-neutral-700">{{ $order->order_number }}</span></p>
-            <p class="text-sm text-neutral-400 mb-8">Total: {{ $order->formattedTotal() }}. Please wait for confirmation and pickup at the counter.</p>
+            <p class="text-sm text-neutral-400 mb-4">Total: {{ $order->formattedTotal() }}.
+                @if ($order->payment_status === \App\Enums\PaymentStatus::Paid)
+                    Your order is being prepared for pickup at the counter.
+                @else
+                    Please complete QRIS payment within 15 minutes or wait for counter confirmation.
+                @endif
+            </p>
 
-            <div class="flex items-center gap-3">
+            @if (session('success'))
+                <div class="mb-6 bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm px-4 py-2.5 rounded-lg">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            <div class="flex flex-wrap items-center justify-center gap-3 mt-4">
+                @if ($order->payment_status === \App\Enums\PaymentStatus::Pending && $order->order_status === \App\Enums\OrderStatus::Pending)
+                    <a href="{{ route('orders.pay', $order) }}"
+                       class="bg-red-600 hover:bg-red-700 transition-colors text-white text-sm font-medium px-6 py-2.5 rounded-md">
+                        Pay with QRIS
+                    </a>
+                @endif
                 <a href="{{ route('orders.index') }}"
                    class="bg-white hover:bg-neutral-50 transition-colors text-neutral-700 text-sm font-medium px-6 py-2.5 rounded-md border border-neutral-300">
                     View Orders
                 </a>
                 <a href="{{ route('menu.index') }}"
-                   class="bg-red-600 hover:bg-red-700 transition-colors text-white text-sm font-medium px-6 py-2.5 rounded-md">
+                   class="{{ $order->payment_status === \App\Enums\PaymentStatus::Paid ? 'bg-red-600 hover:bg-red-700 text-white' : 'bg-white hover:bg-neutral-50 text-neutral-700 border border-neutral-300' }} transition-colors text-sm font-medium px-6 py-2.5 rounded-md">
                     Back To Menu
                 </a>
             </div>

@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
     'payment_status',
     'order_status',
     'paid_at',
+    'expires_at',
 ])]
 class Order extends Model
 {
@@ -34,6 +35,7 @@ class Order extends Model
             'payment_status' => PaymentStatus::class,
             'order_status' => OrderStatus::class,
             'paid_at' => 'datetime',
+            'expires_at' => 'datetime',
         ];
     }
 

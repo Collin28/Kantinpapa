@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Contracts\PaymentGatewayInterface;
 use App\Enums\OrderStatus;
 use App\Enums\PaymentStatus;
 use App\Models\Menu;
@@ -14,7 +15,8 @@ use Illuminate\Validation\ValidationException;
 class CheckoutService
 {
     public function __construct(
-        private CartService $cartService
+        private CartService $cartService,
+        private PaymentGatewayInterface $paymentGateway
     ) {}
 
     public function placeOrder(User $user): Order
@@ -77,6 +79,7 @@ class CheckoutService
                         'total' => $total,
                         'payment_status' => PaymentStatus::Pending,
                         'order_status' => OrderStatus::Pending,
+                        'expires_at' => now()->addMinutes((int) config('services.qris.expiry_minutes', 15)),
                     ]);
 
                     foreach ($lineItems as $item) {
@@ -91,11 +94,7 @@ class CheckoutService
                         $item['menu']->decrement('stock', $item['qty']);
                     }
 
-                    $order->payment()->create([
-                        'method' => 'qris',
-                        'amount' => $total,
-                        'status' => PaymentStatus::Pending,
-                    ]);
+                    $this->paymentGateway->createCharge($order);
 
                     return $order;
                 });

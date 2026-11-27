@@ -18,6 +18,10 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin' => EnsureUserIsAdmin::class,
             'active' => EnsureUserIsActive::class,
         ]);
+
+        $middleware->validateCsrfTokens(except: [
+            'webhooks/qris',
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(

@@ -27,6 +27,7 @@ class OrderFactory extends Factory
             'payment_status' => PaymentStatus::Pending,
             'order_status' => OrderStatus::Pending,
             'paid_at' => null,
+            'expires_at' => now()->addMinutes(15),
         ];
     }
 

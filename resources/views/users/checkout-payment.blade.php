@@ -37,15 +37,12 @@
                     <p class="text-sm text-neutral-500 mb-6">Scan the QR code below with any mobile banking or e-wallet app.</p>
 
                     <div class="border border-neutral-200 rounded-xl p-6 flex flex-col items-center text-center">
-                        <div class="w-48 h-48 bg-neutral-100 border border-neutral-300 rounded-xl flex items-center justify-center mb-4">
-                            <div class="text-center px-4">
-                                <div class="text-xs font-bold uppercase tracking-widest text-neutral-500 mb-1">QRIS</div>
-                                <div class="text-sm font-semibold text-neutral-800">KantinPapa</div>
-                            </div>
+                        <div class="mb-4">
+                            <x-qris-code :seed="'PREVIEW-'.auth()->id().'-'.$totals['total']" />
                         </div>
                         <p class="text-xs text-neutral-500">Amount to Pay</p>
                         <p class="text-2xl font-bold text-red-600 mt-1">Rp {{ number_format($totals['total'], 0, ',', '.') }}</p>
-                        <p class="text-xs text-amber-600 mt-2 font-medium">● Waiting for payment confirmation</p>
+                        <p class="text-xs text-amber-600 mt-2 font-medium">● Place order to generate your order QRIS &amp; 15-minute payment window</p>
                     </div>
 
                     <div class="mt-6 flex items-center gap-4">

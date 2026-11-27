@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'qris' => [
+        'webhook_secret' => env('QRIS_WEBHOOK_SECRET'),
+        'expiry_minutes' => (int) env('QRIS_EXPIRY_MINUTES', 15),
+    ],
+
 ];
