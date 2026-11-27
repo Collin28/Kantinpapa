@@ -17,7 +17,7 @@ class OrderController extends Controller
             ->orders()
             ->with('items')
             ->latest()
-            ->get();
+            ->paginate(10);
 
         return view('users.order-history', [
             'orders' => $orders,
