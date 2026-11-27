@@ -17,6 +17,14 @@
                 </div>
             </div>
 
+            @if (! empty($warnings))
+                <div class="mb-4 bg-amber-50 border border-amber-200 text-amber-800 text-sm px-4 py-3 rounded-lg space-y-1">
+                    @foreach ($warnings as $warning)
+                        <p>{{ $warning }}</p>
+                    @endforeach
+                </div>
+            @endif
+
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
                 <div class="lg:col-span-2 bg-white rounded-2xl border border-neutral-200 p-6">
                     <h1 class="font-bold text-neutral-900 text-2xl mb-6">Review Your Order</h1>

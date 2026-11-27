@@ -13,15 +13,19 @@ class CartController extends Controller
 {
     public function index(CartService $cart): View
     {
+        $warnings = $cart->sanitize();
         $items = $cart->items();
 
         if ($items->isEmpty()) {
-            return view('users.cart-empty');
+            return view('users.cart-empty', [
+                'warnings' => $warnings,
+            ]);
         }
 
         return view('users.cart', [
             'items' => $items,
             'totals' => $cart->totals(),
+            'warnings' => $warnings,
         ]);
     }
 

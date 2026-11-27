@@ -20,7 +20,7 @@ class StoreMenuRequest extends FormRequest
             'category_id' => ['required', 'integer', 'exists:categories,id'],
             'name' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
-            'price' => ['required', 'numeric', 'min:0'],
+            'price' => ['required', 'integer', 'min:0'],
             'stock' => ['required', 'integer', 'min:0'],
             'is_available' => ['sometimes', 'boolean'],
             'image' => ['nullable', 'image', 'max:2048'],

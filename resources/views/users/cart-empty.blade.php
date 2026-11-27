@@ -2,6 +2,22 @@
 
 @section('content')
     <div class="w-full min-h-[70vh] bg-neutral-100">
+        @if (session('warning') || ! empty($warnings))
+            <div class="max-w-5xl mx-auto px-4 sm:px-8 pt-6">
+                @if (session('warning'))
+                    <div class="mb-2 bg-amber-50 border border-amber-200 text-amber-800 text-sm px-4 py-3 rounded-lg">
+                        {{ session('warning') }}
+                    </div>
+                @endif
+                @if (! empty($warnings))
+                    <div class="bg-amber-50 border border-amber-200 text-amber-800 text-sm px-4 py-3 rounded-lg space-y-1">
+                        @foreach ($warnings as $warning)
+                            <p>{{ $warning }}</p>
+                        @endforeach
+                    </div>
+                @endif
+            </div>
+        @endif
         <main class="flex flex-col items-center justify-center px-4 py-24 text-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-20 h-20 text-neutral-300 mb-6" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor" stroke-width="1.2">

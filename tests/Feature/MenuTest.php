@@ -4,6 +4,8 @@ namespace Tests\Feature;
 
 use App\Models\Category;
 use App\Models\Menu;
+use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
@@ -110,12 +112,41 @@ class MenuTest extends TestCase
 
         $this->assertFalse($menu->fresh()->is_available);
 
-        // Delete
+        // Delete (soft delete)
         $this->actingAs($admin)
             ->delete(route('admin.menus.destroy', $menu))
             ->assertRedirect(route('admin.menus.index'));
 
-        $this->assertDatabaseMissing('menus', ['id' => $menu->id]);
+        $this->assertSoftDeleted('menus', ['id' => $menu->id]);
+    }
+
+    public function test_admin_can_delete_menu_that_has_been_ordered_without_breaking_history(): void
+    {
+        $admin = User::factory()->admin()->create();
+        $customer = User::factory()->create();
+        $menu = Menu::factory()->create(['name' => 'Nasi Ayam Bakar', 'price' => 18000, 'stock' => 10]);
+        $order = Order::factory()->for($customer)->create();
+        OrderItem::factory()->for($order)->for($menu)->create([
+            'menu_name' => $menu->name,
+            'unit_price' => 18000,
+            'qty' => 1,
+            'line_total' => 18000,
+        ]);
+
+        $this->actingAs($admin)
+            ->delete(route('admin.menus.destroy', $menu))
+            ->assertRedirect(route('admin.menus.index'));
+
+        $this->assertSoftDeleted('menus', ['id' => $menu->id]);
+
+        $this->get(route('menu.index'))
+            ->assertStatus(200)
+            ->assertDontSee('Nasi Ayam Bakar');
+
+        $this->actingAs($customer)
+            ->get(route('orders.index'))
+            ->assertStatus(200)
+            ->assertSee('Nasi Ayam Bakar');
     }
 
     public function test_non_admin_cannot_access_admin_menu_endpoints(): void

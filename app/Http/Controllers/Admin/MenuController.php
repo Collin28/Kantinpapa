@@ -96,10 +96,6 @@ class MenuController extends Controller
 
     public function destroy(Menu $menu): RedirectResponse
     {
-        if ($menu->img_url && ! str_starts_with($menu->img_url, 'http')) {
-            Storage::disk('public')->delete($menu->img_url);
-        }
-
         $menu->delete();
 
         return redirect()

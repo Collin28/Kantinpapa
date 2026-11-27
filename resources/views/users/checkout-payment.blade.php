@@ -17,6 +17,14 @@
                 </div>
             </div>
 
+            @if (! empty($warnings))
+                <div class="mb-4 bg-amber-50 border border-amber-200 text-amber-800 text-sm px-4 py-3 rounded-lg space-y-1">
+                    @foreach ($warnings as $warning)
+                        <p>{{ $warning }}</p>
+                    @endforeach
+                </div>
+            @endif
+
             @if ($errors->any())
                 <div class="mb-4 bg-red-50 border border-red-200 text-red-700 text-sm px-4 py-3 rounded-lg">
                     {{ $errors->first() }}
@@ -45,11 +53,13 @@
                             class="flex-1 text-center border border-neutral-300 hover:bg-neutral-50 text-neutral-700 text-sm font-semibold py-3 rounded-xl">
                             Back
                         </a>
-                        <form action="{{ route('checkout.store') }}" method="POST" class="flex-1">
+                        <form action="{{ route('checkout.store') }}" method="POST" class="flex-1"
+                            onsubmit="const btn = this.querySelector('button[type=submit]'); btn.disabled = true; btn.textContent = 'Processing...';">
                             @csrf
+                            <input type="hidden" name="checkout_token" value="{{ $checkoutToken }}">
                             <button type="submit"
-                                class="w-full bg-red-600 hover:bg-red-700 transition-colors text-white text-sm font-semibold py-3 rounded-xl">
-                                Confirm Payment
+                                class="w-full bg-red-600 hover:bg-red-700 disabled:opacity-60 transition-colors text-white text-sm font-semibold py-3 rounded-xl">
+                                Place Order
                             </button>
                         </form>
                     </div>

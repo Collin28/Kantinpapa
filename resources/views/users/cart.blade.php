@@ -11,6 +11,20 @@
                 </div>
             @endif
 
+            @if (session('warning'))
+                <div class="mb-4 bg-amber-50 border border-amber-200 text-amber-800 text-sm px-4 py-3 rounded-lg">
+                    {{ session('warning') }}
+                </div>
+            @endif
+
+            @if (! empty($warnings))
+                <div class="mb-4 bg-amber-50 border border-amber-200 text-amber-800 text-sm px-4 py-3 rounded-lg space-y-1">
+                    @foreach ($warnings as $warning)
+                        <p>{{ $warning }}</p>
+                    @endforeach
+                </div>
+            @endif
+
             @if ($errors->any())
                 <div class="mb-4 bg-red-50 border border-red-200 text-red-700 text-sm px-4 py-3 rounded-lg">
                     {{ $errors->first() }}

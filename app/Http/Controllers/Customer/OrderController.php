@@ -43,12 +43,29 @@ class OrderController extends Controller
 
         $order->load('items.menu');
         $added = 0;
+        $adjusted = [];
+        $skipped = [];
 
         foreach ($order->items as $item) {
-            if ($item->menu && ! $item->menu->isSoldOut()) {
-                $cart->add($item->menu, $item->qty);
-                $added++;
+            if (! $item->menu || $item->menu->isSoldOut()) {
+                $skipped[] = $item->menu_name;
+
+                continue;
             }
+
+            $currentQty = $cart->raw()[$item->menu->id] ?? 0;
+            if ($currentQty >= $item->menu->stock) {
+                $skipped[] = $item->menu_name;
+
+                continue;
+            }
+
+            if ($currentQty + $item->qty > $item->menu->stock) {
+                $adjusted[] = "{$item->menu->name} (max {$item->menu->stock})";
+            }
+
+            $cart->add($item->menu, $item->qty);
+            $added++;
         }
 
         if ($added === 0) {
@@ -57,8 +74,22 @@ class OrderController extends Controller
                 ->with('error', 'None of the items from this order are currently available.');
         }
 
-        return redirect()
+        $redirect = redirect()
             ->route('cart.index')
-            ->with('success', 'Items from your previous order have been added to your cart.');
+            ->with('success', "Added {$added} item(s) from your previous order to your cart.");
+
+        $notes = [];
+        if (! empty($adjusted)) {
+            $notes[] = 'Quantity adjusted to available stock: '.implode(', ', $adjusted).'.';
+        }
+        if (! empty($skipped)) {
+            $notes[] = 'Skipped unavailable items: '.implode(', ', $skipped).'.';
+        }
+
+        if (! empty($notes)) {
+            $redirect->with('warning', implode(' ', $notes));
+        }
+
+        return $redirect;
     }
 }

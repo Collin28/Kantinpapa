@@ -9,6 +9,8 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 class AuthController extends Controller
@@ -20,11 +22,25 @@ class AuthController extends Controller
 
     public function authenticate(LoginRequest $request): RedirectResponse
     {
+        $throttleKey = Str::transliterate(Str::lower((string) $request->input('email')).'|'.$request->ip());
+
+        if (RateLimiter::tooManyAttempts($throttleKey, 5)) {
+            $seconds = RateLimiter::availableIn($throttleKey);
+
+            return back()
+                ->withErrors(['email' => "Too many login attempts. Please try again in {$seconds} seconds."])
+                ->onlyInput('email');
+        }
+
         if (! Auth::attempt($request->only('email', 'password'), $request->boolean('remember'))) {
+            RateLimiter::hit($throttleKey, 60);
+
             return back()
                 ->withErrors(['email' => 'The provided credentials do not match our records.'])
                 ->onlyInput('email');
         }
+
+        RateLimiter::clear($throttleKey);
 
         if (! $request->user()->isActive()) {
             Auth::logout();
@@ -59,6 +75,7 @@ class AuthController extends Controller
         ]);
 
         Auth::login($user);
+        $request->session()->regenerate();
 
         return redirect()->route('menu.index');
     }

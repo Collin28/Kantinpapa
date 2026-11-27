@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -27,10 +28,11 @@ class ExampleTest extends TestCase
     public function test_customer_routes_render_for_authenticated_user(): void
     {
         $user = User::factory()->create();
+        $order = Order::factory()->for($user)->create();
 
-        foreach (['cart.index', 'cart.empty', 'orders.index', 'orders.confirmed'] as $name) {
-            $this->actingAs($user)->get(route($name))->assertStatus(200);
-        }
+        $this->actingAs($user)->get(route('cart.index'))->assertStatus(200);
+        $this->actingAs($user)->get(route('orders.index'))->assertStatus(200);
+        $this->actingAs($user)->get(route('orders.confirmed', $order))->assertStatus(200);
     }
 
     public function test_admin_routes_render_for_admin_user(): void

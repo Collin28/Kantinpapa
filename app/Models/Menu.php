@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 #[Fillable(['category_id', 'name', 'description', 'price', 'img_url', 'is_available', 'stock'])]
 class Menu extends Model
 {
     /** @use HasFactory<MenuFactory> */
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $attributes = [
         'is_available' => true,

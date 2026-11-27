@@ -124,4 +124,27 @@ class AuthTest extends TestCase
         $response->assertRedirect(route('menu.index'));
         $this->assertGuest();
     }
+
+    public function test_login_is_rate_limited_after_five_failed_attempts(): void
+    {
+        User::factory()->create([
+            'email' => 'budi@campus.ac.id',
+            'password' => 'password',
+        ]);
+
+        for ($i = 0; $i < 5; $i++) {
+            $this->post(route('login'), [
+                'email' => 'budi@campus.ac.id',
+                'password' => 'wrong-password',
+            ])->assertSessionHasErrors('email');
+        }
+
+        $response = $this->post(route('login'), [
+            'email' => 'budi@campus.ac.id',
+            'password' => 'password',
+        ]);
+
+        $response->assertSessionHasErrors('email');
+        $this->assertGuest();
+    }
 }

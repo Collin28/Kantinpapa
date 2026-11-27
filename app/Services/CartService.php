@@ -57,7 +57,64 @@ class CartService
 
     public function count(): int
     {
-        return array_sum($this->raw());
+        return (int) $this->items()->sum('qty');
+    }
+
+    /**
+     * Sanitize cart entries against current DB availability and stock.
+     *
+     * @return array<int, string>
+     */
+    public function sanitize(): array
+    {
+        $raw = $this->raw();
+
+        if (empty($raw)) {
+            return [];
+        }
+
+        $menus = Menu::withTrashed()
+            ->whereIn('id', array_keys($raw))
+            ->get()
+            ->keyBy('id');
+
+        $sanitized = [];
+        $warnings = [];
+
+        foreach ($raw as $menuId => $qty) {
+            $menu = $menus->get($menuId);
+            $qty = (int) $qty;
+
+            if (! $menu || $menu->trashed() || $menu->isSoldOut()) {
+                $name = $menu?->name ?? 'An item';
+                $warnings[] = "{$name} was removed because it is no longer available.";
+
+                continue;
+            }
+
+            if ($qty <= 0) {
+                continue;
+            }
+
+            if ($qty > $menu->stock) {
+                $sanitized[$menuId] = $menu->stock;
+                $warnings[] = "Quantity for {$menu->name} was adjusted to {$menu->stock} due to limited stock.";
+
+                continue;
+            }
+
+            $sanitized[$menuId] = $qty;
+        }
+
+        if ($sanitized !== $raw) {
+            if (empty($sanitized)) {
+                session()->forget(self::SESSION_KEY);
+            } else {
+                session()->put(self::SESSION_KEY, $sanitized);
+            }
+        }
+
+        return $warnings;
     }
 
     /**
@@ -80,16 +137,21 @@ class CartService
 
         foreach ($raw as $menuId => $qty) {
             $menu = $menus->get($menuId);
-            if (! $menu) {
+            if (! $menu || $menu->isSoldOut()) {
+                continue;
+            }
+
+            $effectiveQty = min((int) $qty, $menu->stock);
+            if ($effectiveQty <= 0) {
                 continue;
             }
 
             $unitPrice = (int) round((float) $menu->price);
             $items->push([
                 'menu' => $menu,
-                'qty' => (int) $qty,
+                'qty' => $effectiveQty,
                 'unit_price' => $unitPrice,
-                'line_total' => $unitPrice * (int) $qty,
+                'line_total' => $unitPrice * $effectiveQty,
             ]);
         }
 
